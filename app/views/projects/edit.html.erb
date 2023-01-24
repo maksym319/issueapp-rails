@@ -1,0 +1,12 @@
+<h3 class="mb-3">Edit Project Detail</h3>
+
+<%= form_for @project, url: { action: "update", id: @project } do |f| %>
+  <div class="input-group mb-3">
+    <%= f.text_field :name, class: "form-control", placeholder: "Name", required: true %>
+  </div>
+  <%= f.submit "Save changes", class: "btn btn-primary" %>
+<% end %>
+
+<div class="mt-3">
+  <%= link_to "Back", { action: "index" } %>
+</div>

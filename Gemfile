@@ -45,6 +45,9 @@ gem "bootsnap", require: false
 # A Ruby gem to load environment variables from `.env`.
 gem 'dotenv-rails', groups: [:development, :test]
 
+gem 'bootstrap', '~> 4.4.1'
+gem 'jquery-rails'
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 

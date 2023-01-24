@@ -1,0 +1,45 @@
+<%= turbo_include_tags %>
+<h3 class="mb-3">Project name: <%= @project.name %></h3>
+
+<div class="d-flex justify-content-between mb-3">
+  <p>
+    <strong>Created Date:</strong> <%= @project.created_at %><br />
+  </p>
+  <%= button_to "Add new Issue", {controller: "issues", action: "new"}, {class: "btn btn-primary", method: "get", params: {project: @project.id}} %>
+</div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>No</th>
+      <th>Title</th>
+      <th>Date created</th>
+      <th>Assigned to</th>
+      <th>Status</th>
+      <th class="text-right">Action</th>
+    </tr>
+  </thead>
+  <% @issues.each do |c| %>
+    <tr>
+      <td><%= link_to c.no, {controller: "issues", action: "show", id: c.id} -%></td>
+      <td><%= c.title %></td>
+      <td><%= c.created_at %></td>
+      <td><%= c.assigned_to %></td>
+      <td><%= c.status %></td>
+      <td class="text-right">
+        <b><%= link_to "Edit", {controller: "issues", action: "edit", id: c.id} %></b>&nbsp;&nbsp;
+        <b>
+          <%= link_to "Destroy", {controller: "issues", action: "destroy", id: c.id}, data: {
+            turbo_method: :delete,
+            turbo_confirm: "Are you sure?"
+          } %>
+        </b>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+<hr />
+<div class="mt-3">
+  <%= link_to "Back", { action: "index" } %>
+</div>

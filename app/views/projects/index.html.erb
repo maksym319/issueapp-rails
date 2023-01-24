@@ -1,0 +1,26 @@
+<%= turbo_include_tags %>
+<div class="d-flex justify-content-between mb-3">
+  <h3>Projects</h3>
+  <%= button_to "Add new Project", {action: "new"}, {class: "btn btn-primary", method: "get"} %>
+</div>
+<% if @projects.blank? %>
+  <p>There are not any projects currently in the system.</p>
+<% else %>
+  <table class="table">
+    <% @projects.each do |c| %>
+      <tr>
+        <td><%= link_to c.name, {action: "show", id: c.id} -%></td>
+        <td class="text-right">
+          <b><%= link_to "Edit", {action: "edit", id: c.id} %></b>&nbsp;&nbsp;
+          <b>
+            <%= link_to "Destroy", {action: "destroy", id: c.id}, data: {
+              turbo_method: :delete,
+              turbo_confirm: "Are you sure?"
+            } %>
+          </b>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+
+<% end %>

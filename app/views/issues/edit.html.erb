@@ -1,0 +1,24 @@
+<h3 class="mb-3">Edit Issue Detail</h3>
+
+<%= form_for @issue, url: { action: "update", id: @issue } do |f| %>
+  <div class="input-group mb-3">
+    <%= f.text_field :no, class: "form-control", placeholder: "No", type: "number", required: true %>
+  </div>
+  <div class="input-group mb-3">
+    <%= f.text_field :title, class: "form-control", placeholder: "Title", required: true %>
+  </div>
+  <div class="input-group mb-3">
+    <%= f.text_area :description, class: "form-control", placeholder: "Description", required: true %>
+  </div>
+  <div class="input-group mb-3">
+    <%= f.text_field :assigned_to, class: "form-control", placeholder: "Assigned to", required: true %>
+  </div>
+  <div class="input-group mb-3">
+    <%= f.select :status, ["Active", "On hold", "Resolved", "Closed"], {}, {class: "form-control"} %>
+  </div>
+  <%= f.submit "Save changes", class: "btn btn-primary" %>
+<% end %>
+
+<div class="mt-3">
+  <%= link_to "Back", { controller: "projects", action: "show", id: @project.id } %>
+</div>
