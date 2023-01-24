@@ -1,8 +1,11 @@
 <h3 class="mb-3">Edit Project Detail</h3>
 
-<%= form_for @project, url: { action: "update", id: @project } do |f| %>
-  <div class="input-group mb-3">
+<%= form_with model: @project, data: { turbo: false }, url: { action: "update", id: @project } do |f| %>
+  <div class="form-group mb-3">
     <%= f.text_field :name, class: "form-control", placeholder: "Name", required: true %>
+    <% if @project.errors[:name].length != 0 %>
+      <small class="form-text text-danger"><%= @project.errors[:name][0] %></small>
+    <% end %>
   </div>
   <%= f.submit "Save changes", class: "btn btn-primary" %>
 <% end %>

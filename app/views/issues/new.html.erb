@@ -3,23 +3,26 @@
 <p>
   <strong>Project:</strong> <%= @project.name %><br />
 </p>
-<%= form_for @issue do |f| %>
-  <div class="input-group">
+<%= form_with model: @issue, data: { turbo: false } do |f| %>
+  <div class="form-group">
     <%= f.text_field :project_id, value: @project.id, class: "form-control", hidden: true %>
   </div>
-  <div class="input-group mb-3">
+  <div class="form-group mb-3">
     <%= f.text_field :no, class: "form-control", placeholder: "No", type: "number", required: true %>
+    <% if @issue.errors[:no].length != 0 %>
+      <small class="form-text text-danger"><%= @issue.errors[:no][0] %></small>
+    <% end %>
   </div>
-  <div class="input-group mb-3">
+  <div class="form-group mb-3">
     <%= f.text_field :title, class: "form-control", placeholder: "Title", required: true %>
   </div>
-  <div class="input-group mb-3">
+  <div class="form-group mb-3">
     <%= f.text_area :description, class: "form-control", placeholder: "Description", required: true %>
   </div>
-  <div class="input-group mb-3">
+  <div class="form-group mb-3">
     <%= f.text_field :assigned_to, class: "form-control", placeholder: "Assigned to", required: true %>
   </div>
-  <div class="input-group mb-3">
+  <div class="form-group mb-3">
     <%= f.select :status, ["Active", "On hold", "Resolved", "Closed"], {}, {class: "form-control"} %>
   </div>
   <%= f.submit "Create", class: "btn btn-primary" %>

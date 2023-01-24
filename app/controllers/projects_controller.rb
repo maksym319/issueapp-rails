@@ -20,9 +20,9 @@ class ProjectsController < ApplicationController
     @project = Project.new(project_params)
 
     if @project.save
-      redirect_to :action => 'index'
+      redirect_to :action => "index"
     else
-      render :action => 'new'
+      render :action => "new"
     end
   end
 
@@ -34,14 +34,14 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
 
     if @project.update(project_params)
-      redirect_to :action => 'show', :id => @project
+      redirect_to :action => "show", :id => @project
     else
-      render :action => 'edit'
+      render :action => "edit"
     end
   end
 
   def destroy
     Project.find(params[:id]).destroy
-    redirect_to :action => 'index'
+    redirect_to :action => "index"
   end
 end

@@ -18,9 +18,10 @@ class IssuesController < ApplicationController
     @issue = Issue.new(issue_params)
 
     if @issue.save
-      redirect_to :controller => "projects", :action => 'show', :id => @issue.project.id
+      redirect_to :controller => "projects", :action => "show", :id => @issue.project.id
     else
-      redirect_to request.referrer
+      @project = @issue.project
+      render :action => "new", :project => @issue.project_id
     end
   end
 
@@ -33,9 +34,10 @@ class IssuesController < ApplicationController
     @issue = Issue.find(params[:id])
 
     if @issue.update(issue_params)
-      redirect_to :controller => "projects", :action => 'show', :id => @issue.project.id
+      redirect_to :controller => "projects", :action => "show", :id => @issue.project.id
     else
-      render :action => 'edit'
+      @project = @issue.project
+      render :action => "edit"
     end
   end
 
