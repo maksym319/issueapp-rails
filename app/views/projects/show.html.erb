@@ -16,6 +16,7 @@
       <th>Created Date</th>
       <th>Assigned to</th>
       <th>Status</th>
+      <th class="text-center">Number of Comments</th>
       <th class="text-right">Action</th>
     </tr>
   </thead>
@@ -26,6 +27,7 @@
       <td><%= c.created_at %></td>
       <td><%= c.assigned_to %></td>
       <td><%= c.status %></td>
+      <td class="text-center"><%= c.comments.length %></td>
       <td class="text-right">
         <b><%= link_to "Edit", {controller: "issues", action: "edit", id: c.id} %></b>&nbsp;&nbsp;
         <b>
